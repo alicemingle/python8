@@ -14,17 +14,14 @@ def get_centrs():
 
 def circ_imp(circles):
     circ_r = [[circle, 0] for circle in circles]
-    '''Евклидово расстояние'''
     def dist(circle_1, circle_2):
         return math.sqrt(sum(list(map(lambda x,y: (x-y)**2, circle_1[0], circle_2[0]))))
-    '''Максимальное расстояние между кругами для дальнейшего сравнения'''
     max_dist = 0
     for c in circ_r:
         for c_ in circ_r:
             d = dist(c, c_)
             if (d > max_dist):
                 max_dist = d
-    '''Нахождение для текущего круга соседа, столкновение с которым наиболее близко'''
     def closest_imp(circle):
         min_d = max_dist
         nn = None #nearest neighbour
@@ -38,7 +35,6 @@ def circ_imp(circles):
                     min_d = d
                     nn = c
         return nn
-    '''Вычисление первого столкновения для определённости сисетмы'''
     c1, c2 = None, None
     min_d = max_dist
     for c in circ_r:
